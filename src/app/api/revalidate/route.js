@@ -20,5 +20,6 @@ export async function POST(req) {
   // await NextResponse.revalidate("/");
 
   // return NextResponse.json({ revalidated: true });
-  return revalidatePath("/");
+  revalidatePath("/");
+  return NextResponse.json({ revalidated: true });
 }
