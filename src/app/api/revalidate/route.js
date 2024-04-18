@@ -1,6 +1,6 @@
 import { isValidSignature, SIGNATURE_HEADER_NAME } from "@sanity/webhook";
 
-const SANITY_WEBHOOK_SECRET = process.env.local.SANITY_WEBHOOK_SECRET;
+const SANITY_WEBHOOK_SECRET = process.env.SANITY_WEBHOOK_SECRET;
 
 export default async function POST(req, res) {
   const signature = req.headers[SIGNATURE_HEADER_NAME];

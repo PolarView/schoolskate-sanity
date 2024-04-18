@@ -6,7 +6,7 @@ export const client = createClient({
   dataset: "production",
   apiVersion: "2024-03-26",
   // unless you have caching for your front end, `useCdn` should be `true` for most production environments
-  useCdn: false
+  useCdn: true
 });
 
 const builder = imageUrlBuilder(client);
