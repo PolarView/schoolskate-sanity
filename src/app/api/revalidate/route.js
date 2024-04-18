@@ -17,10 +17,6 @@ export async function POST(req) {
   // }
 
   try {
-    const pathToRevalidate = req.body.slug.current;
-
-    console.log(`===== Revalidating: ${pathToRevalidate}`);
-
     await NextResponse.revalidate("/");
 
     return NextResponse.json({ revalidated: true });
