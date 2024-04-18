@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0 solid transparent;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  text-rendering: optimizeSpeed;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+@font-face {
+  font-family: Roboto;
+  src: url(../static/typography/Roboto-Regular.woff2);
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: Unbounded;
+  src: url(../static/typography/Unbounded-Bold.woff2);
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: Unbounded;
+  src: url(../static/typography/Unbounded-Regular.woff2);
+  font-weight: 400;
+}
