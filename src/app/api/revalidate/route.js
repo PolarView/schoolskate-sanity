@@ -1,6 +1,7 @@
 export const dynamic = "force-dynamic";
 import { isValidSignature, SIGNATURE_HEADER_NAME } from "@sanity/webhook";
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 
 const SANITY_WEBHOOK_SECRET = process.env.SANITY_WEBHOOK_SECRET;
 
@@ -16,7 +17,8 @@ export async function POST(req) {
   //   return;
   // }
 
-  await NextResponse.revalidate("/");
+  // await NextResponse.revalidate("/");
 
-  return NextResponse.json({ revalidated: true });
+  // return NextResponse.json({ revalidated: true });
+  return revalidatePath("/");
 }
