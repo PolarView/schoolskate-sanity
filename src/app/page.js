@@ -13,8 +13,8 @@ import Reviews from "./components/Reviews";
 
 import { client } from "../sanity/client.js";
 
-const FAQS_QUERY = `*[_type == "faq"]{id, question, answer, isOpen}`;
-const COACHES_QUERY = `*[_type == "coach"]{id,name, experience, thumb, video{'videoUrl':asset->url}}`;
+const FAQS_QUERY = `*[_type == "faq"]{id, question, answer, isOpen} | order(id asc)`;
+const COACHES_QUERY = `*[_type == "coach"]{id,name, experience, thumb, video{'videoUrl':asset->url}} | order(id asc)`;
 const PRICING_QUERY = `*[_type == "pricing"]{id,currentDuration, trainingType, trainingDescription, duration} | order(id asc)`;
 
 // const COACHES_QUERY = `*[_type == "coach"]{id,name, experience, thumb{'imageUrl':asset->url}, video{'videoUrl':asset->url}}`;
