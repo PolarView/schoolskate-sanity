@@ -16,13 +16,7 @@ export async function POST(req) {
   //   return;
   // }
 
-  try {
-    await NextResponse.revalidate("/");
+  await NextResponse.revalidate("/");
 
-    return NextResponse.json({ revalidated: true });
-  } catch (err) {
-    // Could not revalidate. The stale page will continue to be shown until
-    // this issue is fixed.
-    return NextResponse.status(500).send("Error while revalidating");
-  }
+  return NextResponse.json({ revalidated: true });
 }
