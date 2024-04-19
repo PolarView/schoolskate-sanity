@@ -17,6 +17,30 @@ const FAQS_QUERY = `*[_type == "faq"]{id, question, answer, isOpen} | order(id a
 const COACHES_QUERY = `*[_type == "coach"]{id,name, experience, thumb, video{'videoUrl':asset->url}} | order(id asc)`;
 const PRICING_QUERY = `*[_type == "pricing"]{id,currentDuration, trainingType, trainingDescription, duration} | order(id asc)`;
 
+const SANITY_QUERY = `{
+  "previewData": *[_type == "preview"] {thumb},
+  "faqs": *[_type == "faq"] | order(id asc) {
+    id,
+    question,
+    answer,
+    isOpen
+  },
+  "coaches": *[_type == "coach"] | order(id asc) {
+    id,
+    name,
+    experience,
+    thumb,
+    "video": video{'videoUrl':asset->url}
+  },
+  "pricing": *[_type == "pricing"] | order(id asc) {
+    id,
+    currentDuration,
+    trainingType,
+    trainingDescription,
+    duration
+  }
+}`;
+
 // const COACHES_QUERY = `*[_type == "coach"]{id,name, experience, thumb{'imageUrl':asset->url}, video{'videoUrl':asset->url}}`;
 
 async function getFaqs() {
@@ -60,14 +84,30 @@ async function getPricies() {
   return pricing;
 }
 
+async function getSanityData() {
+  const data = await client.fetch(
+    SANITY_QUERY,
+    {}
+    // {
+    //   next: {
+    //     revalidate: 3600 // look for updates to revalidate cache every hour
+    //   }
+    // }
+  );
+  console.log(data);
+  return data;
+}
+
 export default async function Home() {
-  const faq = await getFaqs();
-  const coaches = await getCoaches();
-  const pricing = await getPricies();
+  // const faq = await getFaqs();
+  // const coaches = await getCoaches();
+  // const pricing = await getPricies();
+
+  const { previewData, faqs: faq, coaches, pricing } = await getSanityData();
   return (
     <div className=" min-h-screen flex max-w-screen overflow-x-hidden flex-col w-screen">
       <Navbar />
-      <Preview />
+      <Preview previewData={previewData} />
       <About />
       <Values />
       <Banner />
