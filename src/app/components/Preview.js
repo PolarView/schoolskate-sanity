@@ -2,11 +2,10 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import EnrollPopup from "./popups/EnrollPopup";
+import previewImage from "/public/preview/preview.webp";
 import useEnrollPopup from "../hooks/useEnrollPopup";
-import { urlFor } from "@/sanity/client";
 
-const Preview = ({ previewData }) => {
-  console.log(previewData, "-----------------------------");
+const Preview = () => {
   const [isEnrollPopupOpen, setIsEnrollPopupOpen] = useEnrollPopup();
 
   return (
@@ -18,9 +17,10 @@ const Preview = ({ previewData }) => {
               <div className="relative min-[800px]:max-w-[600px] w-[100%] h-[100%] min-[800px]:max-h-[550px] max-[800px]:max-w-[500px] aspect-square">
                 <Image
                   priority
-                  src={urlFor(previewData[0].thumb).url()}
+                  src={previewImage}
                   alt="фото скейт школы"
                   fill
+                  placeholder="blur"
                   className="aspect-square object-cover rounded-[10px] "
                 />
               </div>

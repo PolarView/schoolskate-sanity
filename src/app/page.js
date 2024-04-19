@@ -16,9 +16,10 @@ import { client } from "../sanity/client.js";
 const FAQS_QUERY = `*[_type == "faq"]{id, question, answer, isOpen} | order(id asc)`;
 const COACHES_QUERY = `*[_type == "coach"]{id,name, experience, thumb, video{'videoUrl':asset->url}} | order(id asc)`;
 const PRICING_QUERY = `*[_type == "pricing"]{id,currentDuration, trainingType, trainingDescription, duration} | order(id asc)`;
+// "previewData": *[_type == "preview"] {thumb},
 
 const SANITY_QUERY = `{
-  "previewData": *[_type == "preview"] {thumb},
+ 
   "faqs": *[_type == "faq"] | order(id asc) {
     id,
     question,
@@ -103,11 +104,11 @@ export default async function Home() {
   // const coaches = await getCoaches();
   // const pricing = await getPricies();
 
-  const { previewData, faqs: faq, coaches, pricing } = await getSanityData();
+  const { faqs: faq, coaches, pricing } = await getSanityData();
   return (
     <div className=" min-h-screen flex max-w-screen overflow-x-hidden flex-col w-screen">
       <Navbar />
-      <Preview previewData={previewData} />
+      <Preview />
       <About />
       <Values />
       <Banner />
